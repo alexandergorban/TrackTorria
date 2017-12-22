@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 })
 export class CounterComponent {
     public currentCount = 0;
+    public isEnable = true;
 
     public incrementCounter() {
         this.currentCount++;
