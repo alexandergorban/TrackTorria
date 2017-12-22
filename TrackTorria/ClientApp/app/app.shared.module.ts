@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { AngularMaterialModule } from './angular-material.module';
+
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 
-import { MatButtonModule, MatSlideToggleModule } from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -25,8 +26,7 @@ import { MatButtonModule, MatSlideToggleModule } from '@angular/material';
         HttpModule,
         FormsModule,
 
-        MatButtonModule,
-        MatSlideToggleModule,
+        AngularMaterialModule,
 
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
