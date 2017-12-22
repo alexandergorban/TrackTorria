@@ -6,6 +6,7 @@ import { MatButtonModule, MatSlideToggleModule } from '@angular/material';
 @NgModule({
     imports: [
         CommonModule,
+
         MatButtonModule,
         MatSlideToggleModule
     ],
