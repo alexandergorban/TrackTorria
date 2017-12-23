@@ -14,29 +14,29 @@ import { CounterComponent } from './components/counter/counter.component';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
-        HomeComponent
-    ],
-    imports: [
-        CommonModule,
-        HttpModule,
-        FormsModule,
-        ReactiveFormsModule,
+  declarations: [
+    AppComponent,
+    NavMenuComponent,
+    CounterComponent,
+    FetchDataComponent,
+    HomeComponent
+  ],
+  imports: [
+    CommonModule,
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
 
-        AngularMaterialModule,
+    AngularMaterialModule,
 
-        RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
-            { path: '**', redirectTo: 'home' }
-        ])
-    ]
+    RouterModule.forRoot([
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'counter', component: CounterComponent },
+      { path: 'fetch-data', component: FetchDataComponent },
+      { path: '**', redirectTo: 'home' }
+    ])
+  ]
 })
 export class AppModuleShared {
 }
