@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularMaterialModule } from './angular-material.module';
 
@@ -28,8 +26,6 @@ import { CounterComponent } from './components/counter/counter.component';
         HttpModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserModule,
-        BrowserAnimationsModule,
 
         AngularMaterialModule,
 
