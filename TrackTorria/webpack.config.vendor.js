@@ -17,8 +17,6 @@ const treeShakableModules = [
 ];
 const nonTreeShakableModules = [
     '@angular/material/prebuilt-themes/deeppurple-amber.css',
-    'bootstrap',
-    'bootstrap/dist/css/bootstrap.css',
     'es6-promise',
     'es6-shim',
     'event-source-polyfill',
