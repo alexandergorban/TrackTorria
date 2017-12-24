@@ -1,0 +1,7 @@
+/* Highlighting rules for nav menu items */
+a.link-active,
+a.link-active:hover,
+a.link-active:focus {
+  background-color: #A191FF;
+  color: white;
+}

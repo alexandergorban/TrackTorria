@@ -104,6 +104,6 @@ import {
   ],
 })
 
-export class AngularMaterialModule {
+export class NgMaterialModule {
 
 }

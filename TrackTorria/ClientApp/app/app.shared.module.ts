@@ -4,10 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { AngularMaterialModule } from './angular-material.module';
+import { NgMaterialModule } from './angular-material.module';
 
 import { AppComponent } from './components/app/app.component';
-import { NavMenuComponent } from './components/navmenu/navmenu.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
@@ -17,6 +18,7 @@ import { CounterComponent } from './components/counter/counter.component';
   declarations: [
     AppComponent,
     NavMenuComponent,
+    HeaderComponent,
     CounterComponent,
     FetchDataComponent,
     HomeComponent
@@ -27,7 +29,7 @@ import { CounterComponent } from './components/counter/counter.component';
     FormsModule,
     ReactiveFormsModule,
 
-    AngularMaterialModule,
+    NgMaterialModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
