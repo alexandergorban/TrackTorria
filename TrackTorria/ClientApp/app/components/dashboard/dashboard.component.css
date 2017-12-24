@@ -16,13 +16,7 @@
 
 .example-sidenav {
   display: flex;
-  width: 250px;
+  width: 200px;
 }
 
-.example-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
 
