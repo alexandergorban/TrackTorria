@@ -4,9 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { NgMaterialModule } from './angular-material.module';
+import { NgMaterialModule } from './ng-material.module';
 
 import { AppComponent } from './components/app/app.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
@@ -17,6 +18,7 @@ import { CounterComponent } from './components/counter/counter.component';
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
     NavMenuComponent,
     HeaderComponent,
     CounterComponent,

@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\angular-material.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\ng-material.module.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
