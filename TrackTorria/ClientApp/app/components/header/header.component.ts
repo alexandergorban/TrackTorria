@@ -6,6 +6,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent {
-  @Output() onToggle = new EventEmitter();
+  @Output() onToggleSideNav = new EventEmitter();
 
 }
