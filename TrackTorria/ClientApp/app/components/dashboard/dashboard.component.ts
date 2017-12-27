@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, ViewChild, OnInit, HostListener } from '@angular/core';
+import { MatSidenav } from "@angular/material";
 
 @Component({
   selector: 'dashboard',
@@ -7,8 +7,32 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./dashboard.component.less']
 })
 export class DashboardComponent {
+  mode = 'side';
+  opened = true;
+
+  @ViewChild('sidenav') sidenav: MatSidenav;
+  navMode = 'side';
 
   constructor() {
 
+  }
+
+  ngOnInit() {
+    if (window.innerWidth <= 600) {
+      this.navMode = 'over';
+      this.opened = false;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (event.target.innerWidth <= 600) {
+      this.navMode = 'over';
+      this.sidenav.close();
+    }
+    if (event.target.innerWidth > 600) {
+      this.navMode = 'side';
+      this.sidenav.open();
+    }
   }
 }

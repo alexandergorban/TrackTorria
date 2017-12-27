@@ -1,6 +1,12 @@
-<mat-toolbar color="primary" class="example-header">
-  <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+<mat-toolbar color="primary" class="header-component">
+  <button mat-icon-button (click)="onToggle.emit()"><mat-icon>menu</mat-icon></button>
   <a class="app-name" [routerLink]="['/home']">
     <h1 class="app-name">TrackTorria</h1>
+  </a>
+  <a class="app-name" [routerLink]="['/home']">
+    <h5 class="app-name">Register</h5>
+  </a>
+  <a class="app-name" [routerLink]="['/home']">
+    <h5 class="app-name">Login</h5>
   </a>
 </mat-toolbar>

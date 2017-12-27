@@ -21,10 +21,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\account\login\login.component.ts" />
+    <None Remove="ClientApp\app\components\account\register\register-confirmation\register-confirmation.component.ts" />
+    <None Remove="ClientApp\app\components\account\register\register.component.ts" />
     <None Remove="ClientApp\app\components\angular-material.module.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\account\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\account\register\register-confirmation\register-confirmation.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\account\register\register\register.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\ng-material.module.ts" />
   </ItemGroup>
 

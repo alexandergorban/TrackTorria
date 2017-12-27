@@ -1,6 +1,6 @@
-<header></header>
+<header (onToggle)="sidenav.toggle()"></header>
 <mat-sidenav-container class="example-container">
-  <mat-sidenav  #snav mode="side" opened="true" class="example-sidenav">
+  <mat-sidenav #sidenav  [mode]="navMode" [opened]="opened" class="example-sidenav" position="start">
     <nav-menu></nav-menu>
   </mat-sidenav>
   <mat-sidenav-content>
