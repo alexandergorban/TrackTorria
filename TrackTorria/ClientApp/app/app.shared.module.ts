@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { NgMaterialModule } from './ng-material.module';
+import { DynamicFormModule } from './shared/forms/dynamic-form.module';
 
 import { AppComponent } from './components/app/app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -32,6 +33,7 @@ import { CounterComponent } from './components/counter/counter.component';
     ReactiveFormsModule,
 
     NgMaterialModule,
+    DynamicFormModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },

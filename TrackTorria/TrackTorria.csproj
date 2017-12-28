@@ -33,6 +33,7 @@
     <None Remove="ClientApp\app\shared\forms\controls\control-textarea.ts" />
     <None Remove="ClientApp\app\shared\forms\controls\control-textbox.ts" />
     <None Remove="ClientApp\app\shared\forms\controls\index.ts" />
+    <None Remove="ClientApp\app\shared\forms\dynamic-form.module.ts" />
     <None Remove="ClientApp\app\shared\forms\form-control.service.ts" />
     <None Remove="ClientApp\app\shared\forms\validation.service.ts" />
   </ItemGroup>
@@ -50,6 +51,7 @@
     <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-textarea.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-textbox.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\dynamic-form.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\form-control.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\validation.service.ts" />
   </ItemGroup>

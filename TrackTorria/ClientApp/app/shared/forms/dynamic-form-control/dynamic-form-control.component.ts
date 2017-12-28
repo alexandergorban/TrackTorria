@@ -6,6 +6,7 @@ import { ControlBase } from '../controls';
 
 @Component({
   selector: 'dynamic-form-control',
+  styleUrls: ['./dynamic-form-control.component.less'],
   templateUrl: './dynamic-form-control.component.html'
 })
 export class DynamicFormControlComponent {

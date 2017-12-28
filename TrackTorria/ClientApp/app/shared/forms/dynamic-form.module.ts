@@ -2,6 +2,19 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import {
+  MatAutocompleteModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatIconModule,
+  MatInputModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatSlideToggleModule
+  } from "@angular/material";
+
 // Components
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicFormControlComponent } from './dynamic-form-control/dynamic-form-control.component';
@@ -14,7 +27,18 @@ import { FormControlService } from './form-control.service';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ],
   declarations: [
     DynamicFormComponent,

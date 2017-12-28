@@ -7,7 +7,7 @@ import { FormControlService } from '../form-control.service';
 
 @Component({
   selector: 'dynamic-form',
-  styleUrls: ['./dynamic-form.component.scss'],
+  styleUrls: ['./dynamic-form.component.less'],
   templateUrl: './dynamic-form.component.html'
 })
 export class DynamicFormComponent implements OnInit, OnDestroy {
