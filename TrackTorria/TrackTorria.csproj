@@ -25,6 +25,11 @@
     <None Remove="ClientApp\app\components\account\register\register-confirmation\register-confirmation.component.ts" />
     <None Remove="ClientApp\app\components\account\register\register.component.ts" />
     <None Remove="ClientApp\app\components\angular-material.module.ts" />
+    <None Remove="ClientApp\app\core\models\index.ts" />
+    <None Remove="ClientApp\app\core\models\login-model.ts" />
+    <None Remove="ClientApp\app\core\models\profile-model.ts" />
+    <None Remove="ClientApp\app\core\models\refresh-grant-model.ts" />
+    <None Remove="ClientApp\app\core\models\register-model.ts" />
     <None Remove="ClientApp\app\shared\forms\controls\control-base.ts" />
     <None Remove="ClientApp\app\shared\forms\controls\control-calendar.ts" />
     <None Remove="ClientApp\app\shared\forms\controls\control-checkbox-list.ts" />
@@ -42,6 +47,11 @@
     <TypeScriptCompile Include="ClientApp\app\components\account\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\account\register\register-confirmation\register-confirmation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\account\register\register\register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\core\models\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\core\models\login-model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\core\models\profile-model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\core\models\refresh-grant-model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\core\models\register-model.ts" />
     <TypeScriptCompile Include="ClientApp\app\ng-material.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-base.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-calendar.ts" />
@@ -54,6 +64,10 @@
     <TypeScriptCompile Include="ClientApp\app\shared\forms\dynamic-form.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\form-control.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\validation.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\core\services\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
