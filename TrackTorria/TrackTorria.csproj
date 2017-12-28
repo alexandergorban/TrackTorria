@@ -22,9 +22,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\account\login\login.component.ts" />
-    <None Remove="ClientApp\app\components\account\register\register-confirmation\register-confirmation.component.ts" />
-    <None Remove="ClientApp\app\components\account\register\register.component.ts" />
     <None Remove="ClientApp\app\components\angular-material.module.ts" />
+    <None Remove="ClientApp\app\core\core.module.ts" />
     <None Remove="ClientApp\app\core\models\index.ts" />
     <None Remove="ClientApp\app\core\models\login-model.ts" />
     <None Remove="ClientApp\app\core\models\profile-model.ts" />
@@ -41,12 +40,13 @@
     <None Remove="ClientApp\app\shared\forms\dynamic-form.module.ts" />
     <None Remove="ClientApp\app\shared\forms\form-control.service.ts" />
     <None Remove="ClientApp\app\shared\forms\validation.service.ts" />
+    <None Remove="ClientApp\typings.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\account\login\login.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\account\register\register-confirmation\register-confirmation.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\account\register\register\register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\account\register\register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\core\core.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\core\models\index.ts" />
     <TypeScriptCompile Include="ClientApp\app\core\models\login-model.ts" />
     <TypeScriptCompile Include="ClientApp\app\core\models\profile-model.ts" />
@@ -64,6 +64,7 @@
     <TypeScriptCompile Include="ClientApp\app\shared\forms\dynamic-form.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\form-control.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\forms\validation.service.ts" />
+    <TypeScriptCompile Include="ClientApp\typings.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
