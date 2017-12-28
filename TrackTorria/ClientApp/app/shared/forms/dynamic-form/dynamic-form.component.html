@@ -1,0 +1,12 @@
+<error-summary></error-summary>
+
+<!--{{form.value | json}}-->
+<form class="{{formClass}}" (ngSubmit)="submit()" [formGroup]="form" #formDir="ngForm" role="form">
+  <dynamic-form-control *ngFor="let ctrl of controls" [control]="ctrl" [form]="form" [frm]="formDir"></dynamic-form-control>
+
+  <div class="form-buttons">
+    <button type="button" *ngIf="displayCancel" class="btn btn-secondary" (click)="cancel()">{{cancelText}}</button>
+    <button type="submit" class="btn btn-primary">{{btnText}}</button>
+  </div>
+
+</form>

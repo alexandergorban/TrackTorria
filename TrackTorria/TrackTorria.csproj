@@ -25,6 +25,16 @@
     <None Remove="ClientApp\app\components\account\register\register-confirmation\register-confirmation.component.ts" />
     <None Remove="ClientApp\app\components\account\register\register.component.ts" />
     <None Remove="ClientApp\app\components\angular-material.module.ts" />
+    <None Remove="ClientApp\app\shared\forms\controls\control-base.ts" />
+    <None Remove="ClientApp\app\shared\forms\controls\control-calendar.ts" />
+    <None Remove="ClientApp\app\shared\forms\controls\control-checkbox-list.ts" />
+    <None Remove="ClientApp\app\shared\forms\controls\control-checkbox.ts" />
+    <None Remove="ClientApp\app\shared\forms\controls\control-dropdown.ts" />
+    <None Remove="ClientApp\app\shared\forms\controls\control-textarea.ts" />
+    <None Remove="ClientApp\app\shared\forms\controls\control-textbox.ts" />
+    <None Remove="ClientApp\app\shared\forms\controls\index.ts" />
+    <None Remove="ClientApp\app\shared\forms\form-control.service.ts" />
+    <None Remove="ClientApp\app\shared\forms\validation.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +42,16 @@
     <TypeScriptCompile Include="ClientApp\app\components\account\register\register-confirmation\register-confirmation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\account\register\register\register.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\ng-material.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-base.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-calendar.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-checkbox-list.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-checkbox.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-dropdown.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-textarea.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\control-textbox.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\controls\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\form-control.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\forms\validation.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
