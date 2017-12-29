@@ -43,6 +43,8 @@ namespace TrackTorria
 
             app.UseStaticFiles();
 
+            app.UseStatusCodePages();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
