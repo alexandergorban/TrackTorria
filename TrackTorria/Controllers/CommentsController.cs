@@ -162,5 +162,27 @@ namespace TrackTorria.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{cardId}/comments/{commentId}")]
+        public IActionResult DeleteComment(int cardId, int commentId)
+        {
+            var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
+
+            if (card == null)
+            {
+                return NotFound();
+            }
+
+            var commentFromStore = card.Comments.FirstOrDefault(c => c.Id == commentId);
+
+            if (commentFromStore == null)
+            {
+                return NotFound();
+            }
+
+            card.Comments.Remove(commentFromStore);
+
+            return NoContent();
+        }
     }
 }
