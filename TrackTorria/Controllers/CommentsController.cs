@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using TrackTorria.Models;
 
@@ -116,5 +117,50 @@ namespace TrackTorria.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{cardId}/comments/{commentId}")]
+        public IActionResult PartiallyUpdateComment(int cardId, int commentId, [FromBody] JsonPatchDocument<CommentForUpdateDto> patchDoc)
+        {
+            if (patchDoc == null)
+            {
+                return BadRequest();
+            }
+
+            var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
+
+            if (card == null)
+            {
+                return NotFound();
+            }
+
+            var commentFromStore = card.Comments.FirstOrDefault(c => c.Id == commentId);
+
+            if (commentFromStore == null)
+            {
+                return NotFound();
+            }
+
+            var commentToPatch = new CommentForUpdateDto()
+            {
+                Description = commentFromStore.Description
+            };
+
+            patchDoc.ApplyTo(commentToPatch, ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            TryValidateModel(commentToPatch);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            commentFromStore.Description = commentToPatch.Description;
+
+            return NoContent();
+        }
     }
 }
