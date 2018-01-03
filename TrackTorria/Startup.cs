@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TrackTorria.Entity;
+using TrackTorria.Services;
 
 namespace TrackTorria
 {
@@ -36,6 +37,8 @@ namespace TrackTorria
 
             var connectionString = Startup.Configuration["connectionStrings:cardDbConnectionString"];
             services.AddDbContext<CardContext>(o => o.UseSqlServer(connectionString));
+
+            services.AddScoped<ICardRepository, CardRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
