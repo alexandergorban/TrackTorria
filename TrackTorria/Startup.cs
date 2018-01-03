@@ -34,12 +34,12 @@ namespace TrackTorria
             services.AddMvc()
                 .AddMvcOptions(o => o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter()));
 
-            var connectionString = Startup.Configuration["connectionString:cardDBConnectionString"];
+            var connectionString = Startup.Configuration["connectionStrings:cardDbConnectionString"];
             services.AddDbContext<CardContext>(o => o.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CardContext cardContext)
         {
 
             loggerFactory.AddConsole();
@@ -57,6 +57,8 @@ namespace TrackTorria
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            cardContext.EnsureSeedDataForContext();
 
             app.UseStaticFiles();
 
