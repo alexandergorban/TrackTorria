@@ -53,7 +53,7 @@ namespace TrackTorria.Controllers
 
             if (comment.User == comment.Description)
             {
-                ModelState.AddModelError("Desctiption", "The provided description should be different from the User.");
+                ModelState.AddModelError("Desctiption", "The provided Description should be different from the User.");
             }
 
             if (!ModelState.IsValid)
@@ -84,6 +84,37 @@ namespace TrackTorria.Controllers
             return CreatedAtRoute("GetComment", new { cardId = cardId, commentId = finalComment.Id }, finalComment);
         }
 
+        [HttpPut("{cardId}/comments/{commentId}")]
+        public IActionResult UpdateComment(int cardId, int commentId, [FromBody] CommentForUpdateDto comment)
+        {
+            if (comment == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
+
+            if (card == null)
+            {
+                return NotFound();
+            }
+
+            var commentFromStore = card.Comments.FirstOrDefault(c => c.Id == commentId);
+
+            if (commentFromStore == null)
+            {
+                return NotFound();
+            }
+
+            commentFromStore.Description = comment.Description;
+
+            return NoContent();
+        }
 
     }
 }
