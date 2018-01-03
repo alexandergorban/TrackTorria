@@ -81,7 +81,7 @@ namespace TrackTorria.Controllers
 
             card.Comments.Add(finalComment);
 
-            return CreatedAtRoute("GetComment", new { cardId = cardId, id = finalComment.Id }, finalComment);
+            return CreatedAtRoute("GetComment", new { cardId = cardId, commentId = finalComment.Id }, finalComment);
         }
 
 
