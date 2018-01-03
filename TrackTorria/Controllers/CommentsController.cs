@@ -51,6 +51,16 @@ namespace TrackTorria.Controllers
                 return BadRequest();
             }
 
+            if (comment.User == comment.Description)
+            {
+                ModelState.AddModelError("Desctiption", "The provided description should be different from the User.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
 
             if (card == null)
@@ -66,7 +76,7 @@ namespace TrackTorria.Controllers
                 User = comment.User,
                 Description = comment.Description,
                 Stage = comment.Stage,
-                AddedAt = comment.AddedAt
+                AddedAt = DateTime.Now
             };
 
             card.Comments.Add(finalComment);
