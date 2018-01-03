@@ -12,5 +12,12 @@ namespace TrackTorria.Models
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public Stage Stage { get; set; }
+
+        public int NumberOfComments
+        {
+            get { return Comments.Count; }
+        }
+
+        public ICollection<CommentDto> Comments { get; set; } = new List<CommentDto>();
     }
 }

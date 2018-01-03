@@ -12,7 +12,7 @@ namespace TrackTorria.Models
 
         public CardsDataStore()
         {
-            // todo remove dummy data
+            // todo remove mock data
             Cards = new List<CardDto>()
             {
                 new CardDto()
@@ -21,7 +21,26 @@ namespace TrackTorria.Models
                     Name = "First card",
                     Description = "Description first card",
                     CreatedAt = new DateTime(2017, 07, 20),
-                    Stage = Stage.ToDo
+                    Stage = Stage.ToDo,
+                    Comments = new List<CommentDto>()
+                    {
+                        new CommentDto()
+                        {
+                            Id = 1,
+                            User = "Ben",
+                            Description = "First comment for first card",
+                            AddedAt = new DateTime(2017, 12, 20),
+                            Stage = Stage.ToDo
+                        },
+                        new CommentDto()
+                        {
+                            Id = 2,
+                            User = "Jins",
+                            Description = "Second comment for first card",
+                            AddedAt = new DateTime(2017, 12, 20),
+                            Stage = Stage.InProgress
+                        },
+                    }
                 },
                 new CardDto()
                 {
@@ -29,7 +48,26 @@ namespace TrackTorria.Models
                     Name = "Second card",
                     Description = "Description second card",
                     CreatedAt = new DateTime(2017, 07, 20),
-                    Stage = Stage.InProgress
+                    Stage = Stage.InProgress,
+                    Comments = new List<CommentDto>()
+                    {
+                        new CommentDto()
+                        {
+                            Id = 3,
+                            User = "Ben",
+                            Description = "First comment for second card",
+                            AddedAt = new DateTime(2017, 12, 20),
+                            Stage = Stage.ToDo
+                        },
+                        new CommentDto()
+                        {
+                            Id = 4,
+                            User = "Jins",
+                            Description = "Second comment for second card",
+                            AddedAt = new DateTime(2017, 12, 20),
+                            Stage = Stage.InProgress
+                        },
+                    }
                 },
                 new CardDto()
                 {
@@ -37,7 +75,26 @@ namespace TrackTorria.Models
                     Name = "Third card",
                     Description = "Description third card",
                     CreatedAt = new DateTime(2017, 07, 20),
-                    Stage = Stage.InProgress
+                    Stage = Stage.InProgress,
+                    Comments = new List<CommentDto>()
+                    {
+                        new CommentDto()
+                        {
+                            Id = 5,
+                            User = "Ben",
+                            Description = "First comment for third card",
+                            AddedAt = new DateTime(2017, 12, 20),
+                            Stage = Stage.ToDo
+                        },
+                        new CommentDto()
+                        {
+                            Id = 6,
+                            User = "Jins",
+                            Description = "Second comment for third card",
+                            AddedAt = new DateTime(2017, 12, 20),
+                            Stage = Stage.InProgress
+                        },
+                    }
                 }
             };
 

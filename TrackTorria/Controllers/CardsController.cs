@@ -11,15 +11,21 @@ namespace TrackTorria.Controllers
     public class CardsController : Controller
     {
         [HttpGet()]
-        public JsonResult GetCards()
+        public IActionResult GetCards()
         {
-            return new JsonResult(CardsDataStore.Current.Cards);
+            return Ok(CardsDataStore.Current.Cards);
         }
 
         [HttpGet("{id}")]
-        public JsonResult GetCard(int id)
+        public IActionResult GetCard(int id)
         {
-            return new JsonResult(CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == id));
+            var cardToReturn = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == id);
+            if (cardToReturn == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cardToReturn);
         }
 
     }
