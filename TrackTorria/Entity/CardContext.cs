@@ -10,7 +10,7 @@ namespace TrackTorria.Entity
     {
         public CardContext(DbContextOptions<CardContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public DbSet<Card> Cards { get; set; }
