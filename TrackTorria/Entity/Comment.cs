@@ -27,5 +27,9 @@ namespace TrackTorria.Entity
 
         [Required]
         public DateTime AddedAt { get; set; }
+
+        [ForeignKey("CardId")]
+        public Card Card { get; set; }
+        public int CardId { get; set; }
     }
 }
