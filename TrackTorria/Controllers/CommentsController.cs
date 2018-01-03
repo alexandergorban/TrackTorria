@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TrackTorria.Models;
 
 namespace TrackTorria.Controllers
@@ -11,17 +12,34 @@ namespace TrackTorria.Controllers
     [Route("api/cards")]
     public class CommentsController : Controller
     {
+        private ILogger<CommentsController> _logger;
+
+        public CommentsController(ILogger<CommentsController> logger)
+        {
+            _logger = logger;
+        }
+
         [HttpGet("{cardId}/comments")]
         public IActionResult GetComments(int cardId)
         {
-            var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
-
-            if (card == null)
+            try
             {
-                return NotFound();
+                var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
+
+                if (card == null)
+                {
+                    _logger.LogInformation($"Card with {cardId} wasn't found.");
+                    return NotFound();
+                }
+
+                return Ok(card.Comments);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation($"Exception while getting comments for card with id {cardId}.", ex);
+                return StatusCode(500, "A problem happened while hendling your request.");
             }
 
-            return Ok(card.Comments);
         }
 
         [HttpGet("{cardId}/comments/{commentId}", Name = "GetComment")]
