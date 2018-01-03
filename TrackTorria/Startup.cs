@@ -16,12 +16,17 @@ namespace TrackTorria
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public static IConfiguration Configuration;
 
-        public IConfiguration Configuration { get; }
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -29,7 +34,7 @@ namespace TrackTorria
             services.AddMvc()
                 .AddMvcOptions(o => o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter()));
 
-            var connectionString = @"Server=(localdb)\mssqllocaldb;Database=TrackTorriaDB;Trusted_Connection=True;";
+            var connectionString = Startup.Configuration["connectionString:cardDBConnectionString"];
             services.AddDbContext<CardContext>(o => o.UseSqlServer(connectionString));
         }
 
