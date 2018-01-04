@@ -119,19 +119,23 @@ namespace TrackTorria.Controllers
                 return BadRequest();
             }
 
-            var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
-            if (card == null)
+            if (!_cardRepository.CardExists(cardId))
             {
                 return NotFound();
             }
 
-            var commentFromStore = card.Comments.FirstOrDefault(c => c.Id == commentId);
-            if (commentFromStore == null)
+            var commentEntity = _cardRepository.GetComment(cardId, commentId);
+            if (commentEntity == null)
             {
                 return NotFound();
             }
 
-            commentFromStore.Description = comment.Description;
+            Mapper.Map(comment, commentEntity);
+
+            if (!_cardRepository.Save())
+            {
+                return StatusCode(500, "A problem happened while handling your request");
+            }
 
             return NoContent();
         }

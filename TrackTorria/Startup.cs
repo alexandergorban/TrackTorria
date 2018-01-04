@@ -73,6 +73,7 @@ namespace TrackTorria
                 cfg.CreateMap<Card, Models.CardDto>();
                 cfg.CreateMap<Comment, Models.CommentDto>();
                 cfg.CreateMap<Models.CommentForCreationDto, Comment>();
+                cfg.CreateMap<Models.CommentForUpdateDto, Comment>();
             });
 
             app.UseMvc(routes =>
