@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TrackTorria.Models;
 using TrackTorria.Services;
@@ -22,19 +23,7 @@ namespace TrackTorria.Controllers
         public IActionResult GetCards()
         {
             var cardEntities = _cardRepository.GetCards();
-            var results = new List<CardWithoutCommentsDto>();
-
-            foreach (var cardEntity in cardEntities)
-            {
-                results.Add(new CardWithoutCommentsDto()
-                {
-                    Id = cardEntity.Id,
-                    Name = cardEntity.Name,
-                    Description = cardEntity.Description,
-                    CreatedAt = cardEntity.CreatedAt,
-                    Stage = cardEntity.Stage
-                });
-            }
+            var results = Mapper.Map<IEnumerable<CardWithoutCommentsDto>>(cardEntities);
 
             return Ok(results);
         }
@@ -50,38 +39,12 @@ namespace TrackTorria.Controllers
 
             if (includeComments)
             {
-                var cardResult = new CardDto()
-                {
-                    Id = cardEntity.Id,
-                    Name = cardEntity.Name,
-                    Description = cardEntity.Description,
-                    Stage = cardEntity.Stage,
-                    CreatedAt = cardEntity.CreatedAt
-                };
-
-                foreach (var commentEntity in cardEntity.Comments)
-                {
-                    cardResult.Comments.Add(new CommentDto()
-                    {
-                        Id = commentEntity.Id,
-                        User = commentEntity.User,
-                        Description = commentEntity.Description,
-                        Stage = commentEntity.Stage,
-                        AddedAt = commentEntity.AddedAt
-                    });
-                }
+                var cardResult = Mapper.Map<CardDto>(cardEntity);
 
                 return Ok(cardResult);
             }
 
-            var cardWithoutComments = new CardWithoutCommentsDto()
-            {
-                Id = cardEntity.Id,
-                Name = cardEntity.Name,
-                Description = cardEntity.Description,
-                Stage = cardEntity.Stage,
-                CreatedAt = cardEntity.CreatedAt
-            };
+            var cardWithoutComments = Mapper.Map<CardWithoutCommentsDto>(cardEntity);
 
             return Ok(cardWithoutComments);
         }

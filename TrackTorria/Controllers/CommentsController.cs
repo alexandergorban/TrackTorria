@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -34,19 +35,7 @@ namespace TrackTorria.Controllers
                 }
 
                 var commentsForCard = _cardRepository.GetComments(cardId);
-
-                var commentsForCardResult = new List<CommentDto>();
-                foreach (var comment in commentsForCard)
-                {
-                    commentsForCardResult.Add(new CommentDto()
-                    {
-                        Id = comment.Id,
-                        User = comment.User,
-                        Description = comment.Description,
-                        Stage = comment.Stage,
-                        AddedAt = comment.AddedAt
-                    });
-                }
+                var commentsForCardResult = Mapper.Map<IEnumerable<CommentDto>>(commentsForCard);
 
                 return Ok(commentsForCardResult);
             }
@@ -74,14 +63,7 @@ namespace TrackTorria.Controllers
                 return NotFound();
             }
 
-            var commentResult = new CommentDto()
-            {
-                Id = comment.Id,
-                User = comment.User,
-                Description = comment.Description,
-                Stage = comment.Stage,
-                AddedAt = comment.AddedAt
-            };
+            var commentResult = Mapper.Map<CommentDto>(comment);
 
             return Ok(commentResult);
         }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using TrackTorria.Entity;
+using TrackTorria.Entities;
 using TrackTorria.Services;
 
 namespace TrackTorria
@@ -66,6 +66,13 @@ namespace TrackTorria
             app.UseStaticFiles();
 
             app.UseStatusCodePages();
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Card, Models.CardWithoutCommentsDto>();
+                cfg.CreateMap<Card, Models.CardDto>();
+                cfg.CreateMap<Comment, Models.CommentDto>();
+            });
 
             app.UseMvc(routes =>
             {
