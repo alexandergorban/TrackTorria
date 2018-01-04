@@ -4,28 +4,86 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TrackTorria.Models;
+using TrackTorria.Services;
 
 namespace TrackTorria.Controllers
 {
     [Route("api/cards")]
     public class CardsController : Controller
     {
+        private ICardRepository _cardRepository;
+
+        public CardsController(ICardRepository cardRepository)
+        {
+            _cardRepository = cardRepository;
+        }
+
         [HttpGet()]
         public IActionResult GetCards()
         {
-            return Ok(CardsDataStore.Current.Cards);
+            var cardEntities = _cardRepository.GetCards();
+            var results = new List<CardWithoutCommentsDto>();
+
+            foreach (var cardEntity in cardEntities)
+            {
+                results.Add(new CardWithoutCommentsDto()
+                {
+                    Id = cardEntity.Id,
+                    Name = cardEntity.Name,
+                    Description = cardEntity.Description,
+                    CreatedAt = cardEntity.CreatedAt,
+                    Stage = cardEntity.Stage
+                });
+            }
+
+            return Ok(results);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetCard(int id)
+        [HttpGet("{cardId}")]
+        public IActionResult GetCard(int cardId, bool includeComments = false)
         {
-            var cardToReturn = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == id);
-            if (cardToReturn == null)
+            var cardEntity = _cardRepository.GetCard(cardId, includeComments);
+            if (cardEntity == null)
             {
                 return NotFound();
             }
 
-            return Ok(cardToReturn);
+            if (includeComments)
+            {
+                var cardResult = new CardDto()
+                {
+                    Id = cardEntity.Id,
+                    Name = cardEntity.Name,
+                    Description = cardEntity.Description,
+                    Stage = cardEntity.Stage,
+                    CreatedAt = cardEntity.CreatedAt
+                };
+
+                foreach (var commentEntity in cardEntity.Comments)
+                {
+                    cardResult.Comments.Add(new CommentDto()
+                    {
+                        Id = commentEntity.Id,
+                        User = commentEntity.User,
+                        Description = commentEntity.Description,
+                        Stage = commentEntity.Stage,
+                        AddedAt = commentEntity.AddedAt
+                    });
+                }
+
+                return Ok(cardResult);
+            }
+
+            var cardWithoutComments = new CardWithoutCommentsDto()
+            {
+                Id = cardEntity.Id,
+                Name = cardEntity.Name,
+                Description = cardEntity.Description,
+                Stage = cardEntity.Stage,
+                CreatedAt = cardEntity.CreatedAt
+            };
+
+            return Ok(cardWithoutComments);
         }
 
     }

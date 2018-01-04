@@ -16,6 +16,11 @@ namespace TrackTorria.Services
             _context = context;
         }
 
+        public bool CardExists(int cardId)
+        {
+            return _context.Cards.Any(c => c.Id == cardId);
+        }
+
         public IEnumerable<Card> GetCards()
         {
             return _context.Cards.OrderBy(c => c.Name).ToList();
@@ -34,7 +39,7 @@ namespace TrackTorria.Services
 
         public IEnumerable<Comment> GetComments(int cardId)
         {
-            return _context.Comments.Where(c => c.Id == cardId).ToList();
+            return _context.Comments.Where(c => c.CardId == cardId).ToList();
         }
 
         public Comment GetComment(int cardId, int commentId)

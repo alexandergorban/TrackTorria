@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TrackTorria.Models;
+using TrackTorria.Services;
 
 namespace TrackTorria.Controllers
 {
@@ -13,10 +14,12 @@ namespace TrackTorria.Controllers
     public class CommentsController : Controller
     {
         private ILogger<CommentsController> _logger;
+        private ICardRepository _cardRepository;
 
-        public CommentsController(ILogger<CommentsController> logger)
+        public CommentsController(ILogger<CommentsController> logger, ICardRepository cardRepository)
         {
             _logger = logger;
+            _cardRepository = cardRepository;
         }
 
         [HttpGet("{cardId}/comments")]
@@ -24,15 +27,28 @@ namespace TrackTorria.Controllers
         {
             try
             {
-                var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
-
-                if (card == null)
+                if (!_cardRepository.CardExists(cardId))
                 {
                     _logger.LogInformation($"Card with {cardId} wasn't found.");
                     return NotFound();
                 }
 
-                return Ok(card.Comments);
+                var commentsForCard = _cardRepository.GetComments(cardId);
+
+                var commentsForCardResult = new List<CommentDto>();
+                foreach (var comment in commentsForCard)
+                {
+                    commentsForCardResult.Add(new CommentDto()
+                    {
+                        Id = comment.Id,
+                        User = comment.User,
+                        Description = comment.Description,
+                        Stage = comment.Stage,
+                        AddedAt = comment.AddedAt
+                    });
+                }
+
+                return Ok(commentsForCardResult);
             }
             catch (Exception ex)
             {
@@ -45,21 +61,29 @@ namespace TrackTorria.Controllers
         [HttpGet("{cardId}/comments/{commentId}", Name = "GetComment")]
         public IActionResult GetComment(int cardId, int commentId)
         {
-            var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
-
-            if (card == null)
+            if (!_cardRepository.CardExists(cardId))
             {
+                _logger.LogInformation($"Card with Id {cardId} wasn't found.");
                 return NotFound();
             }
 
-            var comment = card.Comments.FirstOrDefault(c => c.Id == commentId);
+            var comment = _cardRepository.GetComment(cardId, commentId);
 
             if (comment == null)
             {
                 return NotFound();
             }
 
-            return Ok(comment);
+            var commentResult = new CommentDto()
+            {
+                Id = comment.Id,
+                User = comment.User,
+                Description = comment.Description,
+                Stage = comment.Stage,
+                AddedAt = comment.AddedAt
+            };
+
+            return Ok(commentResult);
         }
 
         [HttpPost("{cardId}/comments")]
@@ -117,14 +141,12 @@ namespace TrackTorria.Controllers
             }
 
             var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
-
             if (card == null)
             {
                 return NotFound();
             }
 
             var commentFromStore = card.Comments.FirstOrDefault(c => c.Id == commentId);
-
             if (commentFromStore == null)
             {
                 return NotFound();
@@ -144,14 +166,12 @@ namespace TrackTorria.Controllers
             }
 
             var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
-
             if (card == null)
             {
                 return NotFound();
             }
 
             var commentFromStore = card.Comments.FirstOrDefault(c => c.Id == commentId);
-
             if (commentFromStore == null)
             {
                 return NotFound();
@@ -185,14 +205,12 @@ namespace TrackTorria.Controllers
         public IActionResult DeleteComment(int cardId, int commentId)
         {
             var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
-
             if (card == null)
             {
                 return NotFound();
             }
 
             var commentFromStore = card.Comments.FirstOrDefault(c => c.Id == commentId);
-
             if (commentFromStore == null)
             {
                 return NotFound();
