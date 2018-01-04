@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace TrackTorria.Entity
+namespace TrackTorria.Entities
 {
     public class CardContext : DbContext
     {

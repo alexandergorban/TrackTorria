@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using TrackTorria.Models;
 
-namespace TrackTorria.Entity
+namespace TrackTorria.Entities
 {
-    public class Comment
+    public class Card
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,20 +16,18 @@ namespace TrackTorria.Entity
 
         [Required]
         [MaxLength(50)]
-        public string User { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(1000)]
         public string Description { get; set; }
 
         [Required]
-        public Stage Stage { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [Required]
-        public DateTime AddedAt { get; set; }
+        public Stage Stage { get; set; }
 
-        [ForeignKey("CardId")]
-        public Card Card { get; set; }
-        public int CardId { get; set; }
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

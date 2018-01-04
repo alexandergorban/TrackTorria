@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
-using TrackTorria.Entity;
+using TrackTorria.Entities;
 using TrackTorria.Models;
 
 namespace TrackTorria.Migrations
@@ -21,7 +21,7 @@ namespace TrackTorria.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("TrackTorria.Entity.Card", b =>
+            modelBuilder.Entity("TrackTorria.Entities.Card", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -43,7 +43,7 @@ namespace TrackTorria.Migrations
                     b.ToTable("Cards");
                 });
 
-            modelBuilder.Entity("TrackTorria.Entity.Comment", b =>
+            modelBuilder.Entity("TrackTorria.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -69,9 +69,9 @@ namespace TrackTorria.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("TrackTorria.Entity.Comment", b =>
+            modelBuilder.Entity("TrackTorria.Entities.Comment", b =>
                 {
-                    b.HasOne("TrackTorria.Entity.Card", "Card")
+                    b.HasOne("TrackTorria.Entities.Card", "Card")
                         .WithMany("Comments")
                         .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Cascade);

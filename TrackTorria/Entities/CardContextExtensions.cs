@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TrackTorria.Models;
 
-namespace TrackTorria.Entity
+namespace TrackTorria.Entities
 {
     public static class CardContextExtensions
     {
