@@ -13,5 +13,7 @@ namespace TrackTorria.Services
         Card GetCard(int cardId, bool includeComments);
         IEnumerable<Comment> GetComments(int cardId);
         Comment GetComment(int cardId, int commentId);
+        void AddComment(int cardId, Comment comment);
+        bool Save();
     }
 }

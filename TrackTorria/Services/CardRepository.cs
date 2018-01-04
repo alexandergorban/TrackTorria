@@ -46,5 +46,16 @@ namespace TrackTorria.Services
         {
             return _context.Comments.Where(c => c.CardId == cardId && c.Id == commentId).FirstOrDefault();
         }
+
+        public void AddComment(int cardId, Comment comment)
+        {
+            var card = GetCard(cardId, false);
+            card.Comments.Add(comment);
+        }
+
+        public bool Save()
+        {
+            return (_context.SaveChanges() >= 0);
+        }
     }
 }

@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TrackTorria.Entities;
 using TrackTorria.Models;
 using TrackTorria.Services;
 
@@ -86,27 +87,23 @@ namespace TrackTorria.Controllers
                 return BadRequest();
             }
 
-            var card = CardsDataStore.Current.Cards.FirstOrDefault(c => c.Id == cardId);
-
-            if (card == null)
+            if (!_cardRepository.CardExists(cardId))
             {
                 return NotFound();
             }
 
-            var maxCommentId = CardsDataStore.Current.Cards.SelectMany(c => c.Comments).Max(c => c.Id);
+            var finalComment = Mapper.Map<Comment>(comment);
 
-            var finalComment = new CommentDto()
+            _cardRepository.AddComment(cardId, finalComment);
+
+            if (!_cardRepository.Save())
             {
-                Id = ++maxCommentId,
-                User = comment.User,
-                Description = comment.Description,
-                Stage = comment.Stage,
-                AddedAt = DateTime.Now
-            };
+                return StatusCode(500, "A problem happened while handling your request");
+            }
 
-            card.Comments.Add(finalComment);
+            var createCommentToReturn = Mapper.Map<CommentDto>(finalComment);
 
-            return CreatedAtRoute("GetComment", new { cardId = cardId, commentId = finalComment.Id }, finalComment);
+            return CreatedAtRoute("GetComment", new { cardId = cardId, commentId = createCommentToReturn.Id }, createCommentToReturn);
         }
 
         [HttpPut("{cardId}/comments/{commentId}")]
