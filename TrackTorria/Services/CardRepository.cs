@@ -53,6 +53,11 @@ namespace TrackTorria.Services
             card.Comments.Add(comment);
         }
 
+        public void DeleteComment(Comment comment)
+        {
+            _context.Comments.Remove(comment);
+        }
+
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);
